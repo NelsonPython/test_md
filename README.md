@@ -75,19 +75,15 @@
 	<pre>
 <code class="language-bash">useradd --system --shell=/sbin/nologin slurm</code></pre>
 
-	<p>&nbsp;</p>
 	</li>
 	<li>Install Slurm server packages:
 	<pre>
 <code class="language-bash">dnf -y install ohpc-slurm-server</code></pre>
 
-	<p>&nbsp;</p>
 	</li>
 	<li>Update the Warewulf files:
 	<pre>
 <code class="language-bash">wwsh file sync</code></pre>
-
-	<p>&nbsp;</p>
 	</li>
 </ol>
 
