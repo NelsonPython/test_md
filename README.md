@@ -60,20 +60,18 @@
 
 <ol>
 	<li>Create a user group that is granted unrestricted SSH access:
-	<pre>
-<code class="language-bash">groupadd sshallowlist</code></pre>
 
-	<p>&nbsp;</p>
+	<pre><code class="language-bash">groupadd sshallowlist</code></pre>
+
 	</li>
 	<li>Add the dedicated Intel&reg; Cluster Checker user to the whitelist. This user account should be able to run the Cluster Checker both inside and outside of a resource manager job.
-	<pre>
-<code class="language-bash">usermod -aG sshallowlist clck</code></pre>
 
-	<p>&nbsp;</p>
+	<pre><code class="language-bash">usermod -aG sshallowlist clck</code></pre>
+
 	</li>
 	<li>Create the Slurm user account:
-	<pre>
-<code class="language-bash">useradd --system --shell=/sbin/nologin slurm</code></pre>
+
+	<pre><code class="language-bash">useradd --system --shell=/sbin/nologin slurm</code></pre>
 
 	</li>
 	<li>Install Slurm server packages:
@@ -126,10 +124,8 @@ wwsh file sync</code></pre>
 
 <ol>
 	<li>To create a new SLURM config file, copy the template for the openHPC SLURM config file:
-	<pre>
-<code class="language-bash">cp /etc/slurm/slurm.conf.ohpc /etc/slurm/slurm.conf</code></pre>
+	<pre><code class="language-bash">cp /etc/slurm/slurm.conf.ohpc /etc/slurm/slurm.conf</code></pre>
 
-	<p>&nbsp;</p>
 	</li>
 	<li>Open the&nbsp;<em>/etc/slurm/slurm.conf&nbsp;</em>file and make the following changes:</li>
 	<li>Locate and update the line beginning with &quot;ControlMachine&quot; to:<br />
@@ -186,7 +182,7 @@ When configured for use with Cromwell, bwa,all and haplo will be used to provide
 	<pre>
 <code class="language-bash">wwsh -y file import /etc/slurm/slurm.conf</code></pre>
 
-	<p>&nbsp;</p>
+
 	</li>
 	<li>Update the&nbsp;<em>/etc/warewulf/defaults/provision.conf&nbsp;</em>file:
 	<ol>
@@ -203,7 +199,7 @@ When configured for use with Cromwell, bwa,all and haplo will be used to provide
 	<pre>
 <code>syssystemctl enable slurmctld.service</code></pre>
 
-	<p>&nbsp;</p>
+
 	</li>
 </ol>
 
