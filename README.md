@@ -60,29 +60,25 @@
 
 <ol>
 	<li>Create a user group that is granted unrestricted SSH access:
-
+	</li>
+	
 	<pre><code class="language-bash">groupadd sshallowlist</code></pre>
 
-	</li>
-	<li>Add the dedicated Intel&reg; Cluster Checker user to the whitelist. This user account should be able to run the Cluster Checker both inside and outside of a resource manager job.
+	<li>Add the dedicated Intel&reg; Cluster Checker user to the whitelist. This user account should be able to run the Cluster Checker both inside and outside of a resource manager job.</li>
 
 	<pre><code class="language-bash">usermod -aG sshallowlist clck</code></pre>
 
-	</li>
-	<li>Create the Slurm user account:
+	<li>Create the Slurm user account:</li>
 
 	<pre><code class="language-bash">useradd --system --shell=/sbin/nologin slurm</code></pre>
 
-	</li>
-	<li>Install Slurm server packages:
-	<pre>
-<code class="language-bash">dnf -y install ohpc-slurm-server</code></pre>
+	<li>Install Slurm server packages:</li>
 
-	</li>
-	<li>Update the Warewulf files:
-	<pre>
-<code class="language-bash">wwsh file sync</code></pre>
-	</li>
+	<pre><code class="language-bash">dnf -y install ohpc-slurm-server</code></pre>
+
+	<li>Update the Warewulf files:</li>
+
+	<pre><code class="language-bash">wwsh file sync</code></pre>
 </ol>
 
 <h4>Summary of the commands</h4>
@@ -124,20 +120,27 @@ wwsh file sync</code></pre>
 
 <ol>
 	<li>To create a new SLURM config file, copy the template for the openHPC SLURM config file:
+	</li>
+
 	<pre><code class="language-bash">cp /etc/slurm/slurm.conf.ohpc /etc/slurm/slurm.conf</code></pre>
 
+	<li>Open the&nbsp;<em>/etc/slurm/slurm.conf&nbsp;</em>file and make the following changes:
 	</li>
-	<li>Open the&nbsp;<em>/etc/slurm/slurm.conf&nbsp;</em>file and make the following changes:</li>
+
 	<li>Locate and update the line beginning with &quot;ControlMachine&quot; to:<br />
-	ControlMachine=frontend</li>
+	ControlMachine=frontend
+	</li>
+
 	<li>The SLURM configuration that ships with OpenHPC has a default set-up. The SLURM control daemon will only make a node available after it goes into the DOWN state if the node was in the DOWN state because it was non-responsive. You can refer to the documentation on the ReturnToService configuration option in:&nbsp;<a href="https://slurm.schedmd.com/slurm.conf.html">https://slurm.schedmd.com/slurm.conf.html</a><br />
-	<br />
+
+		<br />
 	This configuration is reasonable for a large cluster under constant supervision by a system administrator. For a smaller cluster or a cluster that is not under constant supervision by a system administrator, a different configuration is preferable. SLURM should make a compute node available again when a node with a valid configuration registers with the SLURM control daemon. To enable this type of return to service, locate this line:<br />
 	<br />
 	ReturnToService=1<br />
 	<br />
 	Replace it with:<br />
 	ReturnToService=2</li>
+
 	<li>The SLURM configuration that ships with OpenHPC permits sharing a compute node if the specified resource requirements allow it. Adjust this so that jobs can be scheduled based on CPU and memory requirements.<br />
 	<br />
 	Locate the line:<br />
